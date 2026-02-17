@@ -32,12 +32,10 @@ const ClothModel = () => {
         }
     });
 
-    return (
-        <mesh ref={meshRef}>
-            <torusKnotGeometry args={[1.5, 0.4, 256, 64]} />
-            <primitive object={material} attach="material" />
-        </mesh>
-    );
+    <mesh ref={meshRef}>
+        <torusKnotGeometry args={[1.5, 0.4, 128, 32]} />
+        <primitive object={material} attach="material" />
+    </mesh>
 };
 
 export default ClothModel;

@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
-import { Canvas } from '@react-three/fiber';
-import { Environment } from '@react-three/drei';
 import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import BrandStatement from './components/BrandStatement';
-import Gallery from './components/Gallery';
-import Products from './components/Products';
-import Reviews from './components/Reviews';
 import Contact from './components/Contact';
-import FloatingAccessory from './components/FloatingAccessory';
+import Home from './pages/Home';
+import About from './pages/About';
+import Archive from './pages/Archive';
 
 function App() {
   useEffect(() => {
@@ -33,45 +29,35 @@ function App() {
 
     requestAnimationFrame(raf);
 
+    // Scroll to top on route change
+    lenis.on('scroll', () => {
+      // Handle scroll events if needed
+    });
+
     return () => {
       lenis.destroy();
     };
   }, []);
 
   return (
-    <main className="relative bg-background text-white selection:bg-white selection:text-black">
-      <CustomCursor />
-      <Navbar />
+    <Router>
+      <main className="relative bg-background text-white selection:bg-white selection:text-black">
+        <CustomCursor />
+        <Navbar />
 
-      <section id="hero">
-        <Hero />
-      </section>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/archive" element={<Archive />} />
+          {/* Default to Home for other links like Collections which might be sections */}
+          <Route path="/collections" element={<Home />} />
+        </Routes>
 
-      <section id="manifesto">
-        <BrandStatement />
-      </section>
-
-      {/* Transitional 3D Element */}
-      <div className="h-64 w-full bg-background flex items-center justify-center pointer-events-none">
-        <Canvas camera={{ position: [0, 0, 5] }}>
-          <Environment preset="studio" />
-          <FloatingAccessory />
-        </Canvas>
-      </div>
-
-      <section id="collections">
-        <Gallery />
-        <Products />
-      </section>
-
-      <section id="reviews">
-        <Reviews />
-      </section>
-
-      <section id="contact">
-        <Contact />
-      </section>
-    </main>
+        <section id="footer">
+          <Contact />
+        </section>
+      </main>
+    </Router>
   );
 }
 

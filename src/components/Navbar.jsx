@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ShoppingBag } from 'lucide-react';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,11 +16,16 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Close mobile menu on route change
+    useEffect(() => {
+        setMobileMenuOpen(false);
+    }, [location]);
+
     const navLinks = [
-        { name: 'Collections', href: '#collections' },
-        { name: 'Archive', href: '#archive' },
-        { name: 'Manifesto', href: '#manifesto' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Home', href: '/' },
+        { name: 'Collections', href: '/collections' },
+        { name: 'Archive', href: '/archive' },
+        { name: 'About', href: '/about' },
     ];
 
     return (
@@ -28,25 +35,26 @@ const Navbar = () => {
                     }`}
             >
                 <div className="flex items-center gap-12">
-                    <a href="/" className="text-2xl font-bold uppercase tracking-tighter text-white">
+                    <Link to="/" className="text-2xl font-bold uppercase tracking-tighter text-white">
                         AETHER
-                    </a>
+                    </Link>
 
                     <div className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
-                            <a
+                            <Link
                                 key={link.name}
-                                href={link.href}
-                                className="text-[10px] uppercase tracking-[0.3em] text-silver hover:text-white transition-colors"
+                                to={link.href}
+                                className={`text-[10px] uppercase tracking-[0.3em] transition-colors ${location.pathname === link.href ? 'text-white font-bold' : 'text-silver hover:text-white'
+                                    }`}
                             >
                                 {link.name}
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </div>
 
                 <div className="flex items-center gap-6">
-                    <button className="hidden md:flex items-center gap-2 text-white">
+                    <button className="flex items-center gap-2 text-white">
                         <ShoppingBag size={18} />
                         <span className="text-[10px] uppercase tracking-widest font-bold">(0)</span>
                     </button>
@@ -79,17 +87,19 @@ const Navbar = () => {
 
                         <div className="flex flex-col gap-8">
                             {navLinks.map((link, i) => (
-                                <motion.a
+                                <motion.div
                                     key={link.name}
-                                    href={link.href}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 + i * 0.1 }}
-                                    className="text-4xl font-bold uppercase tracking-tighter text-white"
-                                    onClick={() => setMobileMenuOpen(false)}
                                 >
-                                    {link.name}
-                                </motion.a>
+                                    <Link
+                                        to={link.href}
+                                        className="text-4xl font-bold uppercase tracking-tighter text-white"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </motion.div>
                             ))}
                         </div>
 

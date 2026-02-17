@@ -8,10 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 const Gallery = () => {
     const sectionRef = useRef(null);
     const images = [
-        { url: 'https://images.unsplash.com/photo-1539109132332-132d7593c6df?auto=format&fit=crop&q=80', size: 'w-64 h-96', speed: 0.2 },
-        { url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80', size: 'w-80 h-[100px]', speed: 0.5 },
-        { url: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80', size: 'w-72 h-72', speed: 0.3 },
-        { url: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&q=80', size: 'w-96 h-64', speed: 0.4 },
+        { url: 'https://images.unsplash.com/photo-1539109132332-132d7593c6df?auto=format&fit=crop&q=80', size: 'aspect-[3/4]', speed: 0.2 },
+        { url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80', size: 'aspect-[2/3]', speed: 0.5 },
+        { url: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80', size: 'aspect-[4/5]', speed: 0.3 },
+        { url: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&q=80', size: 'aspect-square', speed: 0.4 },
     ];
 
     const { scrollYProgress } = useScroll({
