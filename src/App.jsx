@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
@@ -8,9 +8,26 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Archive from './pages/Archive';
 
-function App() {
+// ScrollToTop component to reset scroll position on route changes
+const ScrollToTop = ({ lenisInstance }) => {
+  const { pathname } = useLocation();
+
   useEffect(() => {
-    const lenis = new Lenis({
+    if (lenisInstance) {
+      lenisInstance.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, lenisInstance]);
+
+  return null;
+};
+
+function App() {
+  const [lenis, setLenis] = React.useState(null);
+
+  useEffect(() => {
+    const lenisInstance = new Lenis({
       duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
@@ -22,26 +39,24 @@ function App() {
       infinite: false,
     });
 
+    setLenis(lenisInstance);
+
     function raf(time) {
-      lenis.raf(time);
+      lenisInstance.raf(time);
       requestAnimationFrame(raf);
     }
 
     requestAnimationFrame(raf);
 
-    // Scroll to top on route change
-    lenis.on('scroll', () => {
-      // Handle scroll events if needed
-    });
-
     return () => {
-      lenis.destroy();
+      lenisInstance.destroy();
     };
   }, []);
 
   return (
     <Router>
-      <main className="relative bg-background text-white selection:bg-white selection:text-black">
+      <ScrollToTop lenisInstance={lenis} />
+      <main className="relative bg-background text-white selection:bg-white selection:text-black min-h-screen">
         <CustomCursor />
         <Navbar />
 
@@ -49,7 +64,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/archive" element={<Archive />} />
-          {/* Default to Home for other links like Collections which might be sections */}
           <Route path="/collections" element={<Home />} />
         </Routes>
 
