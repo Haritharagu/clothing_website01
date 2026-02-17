@@ -44,6 +44,11 @@ const Navbar = () => {
                             <Link
                                 key={link.name}
                                 to={link.href}
+                                onClick={() => {
+                                    if (location.pathname === link.href) {
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }
+                                }}
                                 className={`text-[10px] uppercase tracking-[0.3em] transition-colors ${location.pathname === link.href ? 'text-white font-bold' : 'text-silver hover:text-white'
                                     }`}
                             >
