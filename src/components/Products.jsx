@@ -10,13 +10,13 @@ const products = [
 
 const Products = () => {
     return (
-        <section className="bg-white text-black py-32 px-8 md:px-24 w-full">
-            <div className="flex flex-col md:flex-row items-end justify-between mb-24 gap-8">
+        <section className="bg-white text-black py-16 md:py-32 px-8 md:px-24 w-full">
+            <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-24 gap-8">
                 <div>
                     <span className="text-xs uppercase tracking-[0.5em] mb-4 block">Essentials</span>
-                    <h2 className="text-6xl font-bold uppercase tracking-tighter">Selected <br /> Pieces</h2>
+                    <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter">Selected <br /> Pieces</h2>
                 </div>
-                <div className="max-w-xs text-right">
+                <div className="max-w-xs md:text-right">
                     <p className="text-sm text-graphite uppercase tracking-widest">
                         A curated selection of our core silhouettes, redefined for the modern aesthetic.
                     </p>

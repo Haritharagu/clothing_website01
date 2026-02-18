@@ -35,12 +35,12 @@ const Hero = () => {
                     initial={{ opacity: 0, x: -100 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
-                    className="text-left"
+                    className="text-left w-full md:w-auto"
                 >
-                    <h1 className="text-[12vw] md:text-[8vw] font-bold leading-none tracking-tighter text-white uppercase">
+                    <h1 className="text-[14vw] md:text-[8vw] font-bold leading-none tracking-tighter text-white uppercase break-words">
                         AETHER <br /> RUNWAY
                     </h1>
-                    <p className="mt-4 text-silver text-lg uppercase tracking-[0.5em] font-light">
+                    <p className="mt-4 text-silver text-base md:text-lg uppercase tracking-[0.5em] font-light">
                         FW 2026 Collection
                     </p>
                 </motion.div>

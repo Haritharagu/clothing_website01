@@ -90,7 +90,7 @@ const Navbar = () => {
                             </button>
                         </div>
 
-                        <div className="flex flex-col gap-8">
+                        <div className="flex flex-col gap-6 md:gap-8">
                             {navLinks.map((link, i) => (
                                 <motion.div
                                     key={link.name}
@@ -100,7 +100,7 @@ const Navbar = () => {
                                 >
                                     <Link
                                         to={link.href}
-                                        className="text-4xl font-bold uppercase tracking-tighter text-white"
+                                        className="text-2xl md:text-4xl font-bold uppercase tracking-tighter text-white"
                                     >
                                         {link.name}
                                     </Link>

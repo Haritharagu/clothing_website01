@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const BrandStatement = () => {
     return (
-        <section className="min-h-[80vh] w-full bg-white text-black flex items-center justify-center py-24 px-8 md:px-24">
+        <section className="min-h-[60vh] md:min-h-[80vh] w-full bg-white text-black flex items-center justify-center py-16 md:py-24 px-8 md:px-24">
             <div className="max-w-6xl w-full">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
@@ -11,8 +11,8 @@ const BrandStatement = () => {
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}
                 >
-                    <span className="text-xs uppercase tracking-[0.5em] mb-8 block text-graphite">Manifesto</span>
-                    <h2 className="text-4xl md:text-7xl font-bold uppercase leading-[1.1] tracking-tight">
+                    <span className="text-xs uppercase tracking-[0.5em] mb-4 md:mb-8 block text-graphite">Manifesto</span>
+                    <h2 className="text-2xl md:text-7xl font-bold uppercase leading-[1.1] tracking-tight">
                         We don't just create clothing; we engineer <span className="text-silver/60">visual landscapes</span>. Every thread is a pixel in the story of modern <span className="italic font-serif">avant-garde</span> excellence.
                     </h2>
 

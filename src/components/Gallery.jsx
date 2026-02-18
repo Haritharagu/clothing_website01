@@ -20,9 +20,9 @@ const Gallery = () => {
     });
 
     return (
-        <section ref={sectionRef} className="relative min-h-[150vh] w-full bg-background py-32 overflow-hidden">
-            <div className="absolute top-20 left-24 z-10">
-                <h2 className="text-8xl font-bold uppercase tracking-tighter text-white/10">Frames</h2>
+        <section ref={sectionRef} className="relative min-h-[150vh] w-full bg-background py-16 md:py-32 overflow-hidden">
+            <div className="absolute top-20 left-8 md:left-24 z-10">
+                <h2 className="text-4xl md:text-8xl font-bold uppercase tracking-tighter text-white/10">Frames</h2>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 px-8 md:px-24">
